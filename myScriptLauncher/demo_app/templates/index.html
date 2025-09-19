@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Menú de Manteniment</title>
+  <style>
+    /* --- Reset & base --- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: radial-gradient(1200px 800px at 50% 30%, #7a122b 0%, #3a0713 55%, #1a040a 100%); color: #fff; }
+    a { color: inherit; text-decoration: none; }
+
+    :root {
+      /* Paleta que parte del granat fosc i afegeix contrastos complementaris */
+      --btn-1: #5a0b1e; /* granate fosc */
+      --btn-2: #8c1d40; /* granate */
+      --btn-3: #b23a48; /* carmesí rosat */
+      --btn-4: #2e3a8c; /* indi blau */
+      --btn-5: #0f6a5b; /* verd teal */
+      --btn-6: #d5a021; /* or mostassa */
+
+      --btn-shadow: 0 10px 25px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.06);
+      --radius: 18px;
+    }
+
+    .page { min-height: 100svh; min-height: 100dvh; display: grid; place-items: center; padding: 2vmin; }
+
+    /* --- Grid base (canvia per breakpoint) --- */
+    .grid {
+      display: grid;
+      width: min(100%, 980px);
+      gap: clamp(10px, 2vmin, 20px);
+    }
+
+    .btn {
+      --bg: #444;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 90%, #ffffff 10%), var(--bg));
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; font-weight: 700; letter-spacing: .2px;
+      padding: 20px; height: 100%;
+      box-shadow: var(--btn-shadow);
+      outline: none; border: 1px solid rgba(255,255,255,.08);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+      will-change: transform;
+    }
+
+    .btn span { font-size: clamp(16px, 2.4vmin, 22px); line-height: 1.2; text-wrap: balance; }
+
+    .btn:focus-visible { box-shadow: 0 0 0 3px #fff3, 0 0 0 6px #fff2, var(--btn-shadow); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06); }
+    .btn:active { transform: translateY(0); filter: brightness(.98); }
+
+    /* Colors per botó */
+    .btn--1 { --bg: var(--btn-1); }
+    .btn--2 { --bg: var(--btn-2); }
+    .btn--3 { --bg: var(--btn-3); }
+    .btn--4 { --bg: var(--btn-4); }
+    .btn--5 { --bg: var(--btn-5); }
+    .btn--6 { --bg: var(--btn-6); color: #1d1500; text-shadow: 0 1px 0 rgba(255,255,255,.25); border-color: rgba(0,0,0,.08); }
+
+    /* --- Mobile first: 2x3 que ocupa el 100% de l'alçada sense scroll --- */
+    @media (max-width: 767px) {
+      .wrapper { width: 100vw; height: 100svh; height: 100dvh; overflow: hidden; }
+      .grid { width: 100%; height: 100%; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); gap: 0; }
+      .btn { border-radius: 0; border: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+      .btn + .btn { border-left: 1px solid rgba(255,255,255,.05); }
+      .grid > *:nth-child(-n+2) { border-top-left-radius: 0; border-top-right-radius: 0; }
+    }
+
+    /* --- Desktop: centrat al mig, mides còmodes --- */
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(3, min(240px, 24vw));
+        grid-auto-rows: minmax(96px, 120px);
+        place-content: center; /* centra verticalment i horitzontalment dins .page */
+        place-items: stretch;
+      }
+      .btn { border-radius: var(--radius); }
+    }
+
+    /* Respecte a persones amb motion reduït */
+    @media (prefers-reduced-motion: reduce) {
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page wrapper">
+    <main class="grid" role="navigation" aria-label="Serveis de manteniment">
+      <a class="btn btn--1" href="./formulari-maquinaria/"><span>Manteniment Maquinària</span></a>
+      <a class="btn btn--2" href="./formulari-maquinaria/"><span>Manteniment Vehicles</span></a>
+      <a class="btn btn--3" href="./formulari-maquinaria/"><span>Manteniment Informàtic</span></a>
+      <a class="btn btn--4" href="./formulari-maquinaria/"><span>Manteniment Elèctric</span></a>
+      <a class="btn btn--5" href="./formulari-maquinaria/"><span>Sol·licituts</span></a>
+      <a class="btn btn--6" href="./formulari-maquinaria/" aria-label="Altres Serveis"><span>Altres Serveis</span></a>
+    </main>
+  </div>
+</body>
+</html>

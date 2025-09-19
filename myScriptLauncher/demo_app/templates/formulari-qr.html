@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Pujar fotografia – Ubicació</title>
+  <style>
+    /* Estils mínims per una UI neta */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#fff;
+      background: radial-gradient(1200px 800px at 50% 30%, #7a122b 0%, #3a0713 55%, #1a040a 100%);}  
+
+    :root{
+      --granat-2:#8c1d40;
+      --field-bg: rgba(255,255,255,.08);
+      --field-brd: rgba(255,255,255,.18);
+      --radius:18px;
+      --shadow:0 10px 25px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .page{min-height:100svh;min-height:100dvh;display:grid;place-items:center;padding:2vmin}
+    .card{width:min(100%,680px);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+
+    h1{margin:0 0 8px;font-size:clamp(18px,2.6vmin,28px);font-weight:800;letter-spacing:.2px}
+    p.sub{margin:0 0 18px;opacity:.85;font-size:clamp(12px,2vmin,14px)}
+
+    .row{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+    label{font-weight:700}
+    input[type="file"].field{
+      background:var(--field-bg);border:1px solid var(--field-brd);border-radius:12px;padding:12px 14px;color:#fff;outline:none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);font-size:clamp(14px,2.1vmin,16px)
+    }
+    input[type="file"].field::file-selector-button{
+      margin-right:12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;
+      background:linear-gradient(180deg, color-mix(in srgb, var(--granat-2) 90%, #fff 10%), var(--granat-2));color:#fff
+    }
+
+    .actions{display:flex;justify-content:flex-end;margin-top:16px}
+    .btn{border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 18px;font-weight:800;letter-spacing:.2px;cursor:pointer;
+      background:linear-gradient(180deg, color-mix(in srgb, var(--granat-2) 90%, #fff 10%), var(--granat-2));box-shadow:var(--shadow)}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="card" role="form" aria-labelledby="ttl">
+      <header class="header">
+        <h1 id="ttl">Ubicació</h1>
+        <p class="sub">Puja una fotografia del QR (càmera o galeria) i envia el formulari.</p>
+      </header>
+
+      <!-- Formulari simplificat: només foto i submit a /processa-qr -->
+      <form class="form" id="qr_form" action="/processa-qr" method="POST" enctype="multipart/form-data">
+        <div class="row">
+          <label class="label" for="foto">Fotografia del QR</label>
+          <input id="foto" name="foto" class="field" type="file" accept="image/*" capture="environment" required />
+        </div>
+        <div class="actions">
+          <button class="btn" type="submit">Enviar</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
